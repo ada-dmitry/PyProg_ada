@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import config
 
+
 # Парсер и загрузчик в БД//Антипенко Дмитрий
 connection = psycopg2.connect(
     host=config.hostname, dbname=config.databname, user=config.username, password=config.passw)
