@@ -3,16 +3,21 @@ import psycopg2
 import config
 from telebot import types
 import random
-import tableCreator #включать лишь тогда, когда таблицы ещё нет
 
 connection = psycopg2.connect(host=config.hostname, dbname=config.databname, user=config.username, password=config.passw)
 cursor = connection.cursor()
-
-sel_query = """SELECT * FROM public.parser"""
-cursor.execute(sel_query)
+try:
+    sel_query = """SELECT * FROM public.parser"""
+    cursor.execute(sel_query)
+except psycopg2.errors.UndefinedTable:
+    connection.rollback()
+    import tableCreator
+    sel_query = """SELECT * FROM public.parser"""
+    cursor.execute(sel_query)
+     
 array = list(cursor.fetchall())
 
-bot = telebot.TeleBot('6285042955:AAEPprYo9K7Ta0RkDcoqO2Z4Ejdw8to1NX0')
+bot = telebot.TeleBot(config.api)
 @bot.message_handler(commands=["start"])
 
 def start(m, res=False):
