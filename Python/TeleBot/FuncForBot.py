@@ -11,4 +11,3 @@ def upd(conn, cursor, tabl):
         up_query = f"""UPDATE {tabl} SET page_name = '{parser.name[i].text}', price = '{parser.price[i].text}', priceDis = '{parser.priceDis[i].text}', mark = '{parser.mark[i].text}' WHERE id = {i+1}"""
         cursor.execute(up_query)
         conn.commit()
-
