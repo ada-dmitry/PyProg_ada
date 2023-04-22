@@ -29,3 +29,6 @@ for i in range(15):
         connection.commit()
     except:
         connection.rollback()
+
+cursor.close()
+connection.close()
