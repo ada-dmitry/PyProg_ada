@@ -1,9 +1,14 @@
-def f():
-    a = [1,2,3]
-    b = [3,4,5]
-    c = ["1", "2", "3"]
-    return a,b,c
+import psycopg2
+import wget
+import config
 
-a,b,c = f()
 
-print(a, b, c)
+connection = psycopg2.connect(host=config.hostname, dbname=config.databname, user=config.username, password=config.passw)
+cursor = connection.cursor()
+
+def sel(a):
+    s_query = f"""SELECT * FROM public.parser WHERE id = {a}"""
+    print(cursor.execute(s_query))
+    return cursor.fetchone()
+
+print(sel(10))

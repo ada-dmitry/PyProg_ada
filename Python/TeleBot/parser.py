@@ -14,5 +14,3 @@ price = b_soup.find_all('span', class_="middle_price")
 priceDis = b_soup.find_all('span', class_="baseoldprice")
 mark = b_soup.find_all('span', class_="product-rating__rating")
 pictures = b_soup.find_all('div', class_="catalog-list-item__img-wrapper")
-
-
