@@ -21,7 +21,7 @@ for i in range(15):
     print(i)
     url = 'https://amwine.ru' + \
         parser.pictures[i].find('a').find('img').attrs['data-src']
-    filename = f"Python\\TeleBot\img\{i}.jpg"
+    filename = f"Python/TeleBot/image/{i}.jpg"
     wget.download(url, filename)
     try:
         ins_qwery = f"""insert into public.Parser(page_name, price, priceDis, mark, scr) values ('{parser.name[i].text}', '{parser.price[i].text}', '{parser.priceDis[i].text}',  '{parser.mark[i].text}', '{filename}')"""

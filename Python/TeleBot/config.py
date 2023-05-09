@@ -1,5 +1,5 @@
 hostname = "localhost"
-databname = "PythonDB"
-username = "postgres"
-passw = "Q1w2e3r4"
+databname = "ada"
+username = "ada"
+passw = "Ri588856"
 api = "6285042955:AAEPprYo9K7Ta0RkDcoqO2Z4Ejdw8to1NX0"
