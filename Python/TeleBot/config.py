@@ -1,5 +1,5 @@
 hostname = "localhost"
 databname = "ada"
-username = "ada"
+username = "postgres"
 passw = "Ri588856"
 api = "6285042955:AAEPprYo9K7Ta0RkDcoqO2Z4Ejdw8to1NX0"
