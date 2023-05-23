@@ -15,7 +15,7 @@ except psycopg2.errors.UndefinedTable:
     import tableCreator
     array = FuncForBot.sel(cursor, 'parser')
 finally:
-    FuncForBot.upd(connection, cursor, 'parser')
+    # FuncForBot.upd(connection, cursor, 'parser')
     cursor.close()
     connection.close()
 
@@ -30,17 +30,23 @@ def start(m, res=False):
     markup.add(item1)
     markup.add(item2)
     bot.send_message(
-        m.chat.id, '"Рандомное вино!" - для получения карточки товара\n "Повтори!" - для повторения сообщений.',  reply_markup=markup)
+        m.chat.id, '"Рандомное вино!" - для получения карточки товара\n Введите число(1-20) для вывода определенной позиции\n "Повтори!" - для повторения сообщений.',  reply_markup=markup)
 
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    if (message.text.strip() == 'Рандомное вино!'):
+    m = message.text.strip() 
+    if (m == 'Рандомное вино!'):
         i = random.choice(array)
         ans = f'Название: {i[1]}\nЦена: {i[2]}\nЦена без скидки: {i[3]}\nОценка: {i[4]}\n'
         bot.send_message(message.chat.id, ans)
         bot.send_photo(message.chat.id, open(i[5], 'rb'))
-    elif (message.text.strip() == 'Повтори!'):
+    elif (m.isnumeric() == True):
+        i = array[int(m)]
+        ans = f'Название: {i[1]}\nЦена: {i[2]}\nЦена без скидки: {i[3]}\nОценка: {i[4]}\n'
+        bot.send_message(message.chat.id, ans)
+        bot.send_photo(message.chat.id, open(i[5], 'rb'))
+    elif (m == 'Повтори!'):
         bot.send_message(message.chat.id, 'Ввод: ' + message.text)
 
 
