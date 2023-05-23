@@ -15,7 +15,7 @@ except psycopg2.errors.UndefinedTable:
     import tableCreator
     array = FuncForBot.sel(cursor, 'parser')
 finally:
-    # FuncForBot.upd(connection, cursor, 'parser')
+    FuncForBot.upd(connection, cursor, 'parser')
     cursor.close()
     connection.close()
 
